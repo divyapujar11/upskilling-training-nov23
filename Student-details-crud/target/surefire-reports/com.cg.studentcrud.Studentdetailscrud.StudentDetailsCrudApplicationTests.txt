@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.cg.studentcrud.Studentdetailscrud.StudentDetailsCrudApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 11.436 s <<< FAILURE! - in com.cg.studentcrud.Studentdetailscrud.StudentDetailsCrudApplicationTests
+testSaveAndGetStudent  Time elapsed: 0.047 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "com.cg.studentcrud.Studentdetailscrud.model.Student.getId()" because "savedStudent" is null
+	at com.cg.studentcrud.Studentdetailscrud.StudentDetailsCrudApplicationTests.testSaveAndGetStudent(StudentDetailsCrudApplicationTests.java:51)
+
