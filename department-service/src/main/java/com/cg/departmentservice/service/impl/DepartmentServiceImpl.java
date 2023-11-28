@@ -4,62 +4,40 @@ import org.springframework.stereotype.Service;
 
 import com.cg.departmentservice.dto.DepartmentDto;
 import com.cg.departmentservice.entity.Department;
+import com.cg.departmentservice.mapper.DepartmentMapper;
 import com.cg.departmentservice.repository.DepartmentRepository;
 import com.cg.departmentservice.service.DepartmentService;
 
 import lombok.AllArgsConstructor;
 
+		
 @Service
 @AllArgsConstructor
-public class DepartmentServiceImpl implements DepartmentService{
+public class DepartmentServiceImpl implements DepartmentService {
 
-	DepartmentRepository departmentRepository;
-	
-	
-	
-	@Override
-	public DepartmentDto saveDepartmentDto(DepartmentDto departmentDto) {
-		// TODO Auto-generated method stub
-		
-		/// convert departmentDto to DepartmentJpa entity
-		Department department = new Department(
-				departmentDto.getId(),
-				departmentDto.getDepartmentName(),
-				departmentDto.getDepartmentDescription(),
-				departmentDto.getDepartmentCode()
-				);
-		
-		Department savedDepartment = departmentRepository.save(department);
-		
-		DepartmentDto saveDepartmentDto = new DepartmentDto(
-				savedDepartment.getId(),
-				savedDepartment.getDepartmentName(),
-				savedDepartment.getDepartmentDescription(),
-				savedDepartment.getDepartmentCode()
-				);
-		
-		
-		return saveDepartmentDto;
-	}
+    private DepartmentRepository departmentRepository;
 
+    @Override
+    public DepartmentDto saveDepartment(DepartmentDto departmentDto) {
 
+        // convert department dto to department jpa entity
+        Department department = DepartmentMapper.mapToDepartment(departmentDto);
 
-	@Override
-	public DepartmentDto getDepartmentByCode(String departmentCode) {
-		// TODO Auto-generated method stub
-		
-		Department department = departmentRepository.findByDepartmentCode(departmentCode);
-		
-		DepartmentDto departmentDto = new DepartmentDto(
-				department.getId(),
-				department.getDepartmentName(),
-				department.getDepartmentDescription(),
-				department.getDepartmentCode()
-				);
-		
-		return departmentDto;
-	}
-	
-	
+        Department savedDepartment = departmentRepository.save(department);
 
+        DepartmentDto savedDepartmentDto = DepartmentMapper.mapToDepartmentDto(savedDepartment);
+
+        return savedDepartmentDto;
+    }
+
+    @Override
+    public DepartmentDto getDepartmentByCode(String departmentCode) {
+
+        Department department = departmentRepository.findByDepartmentCode(departmentCode);
+
+        DepartmentDto departmentDto = DepartmentMapper.mapToDepartmentDto(department);
+
+        return departmentDto;
+    }
 }
+

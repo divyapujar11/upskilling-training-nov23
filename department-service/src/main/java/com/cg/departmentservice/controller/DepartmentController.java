@@ -24,7 +24,7 @@ public class DepartmentController {
 	//build save department rest api
 	@PostMapping
 	public ResponseEntity<DepartmentDto> saveDepartment(@RequestBody DepartmentDto departmentDto){
-		DepartmentDto saveDepartmentDto = departmentService.saveDepartmentDto(departmentDto);
+		DepartmentDto saveDepartmentDto = departmentService.saveDepartment(departmentDto);
 		
 		return new ResponseEntity<>(saveDepartmentDto,HttpStatus.CREATED);
 		
